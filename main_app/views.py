@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from .models import Boat
 
 
 def home(request):
@@ -7,3 +7,6 @@ def home(request):
 
 def about(request):
     return render(request, 'about.html')
+
+def boats_index(request):
+    return render(request, 'boats/index.html', { 'boats': boats })

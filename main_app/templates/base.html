@@ -2,32 +2,42 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Service Tracker</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
 </head>
+
 <body>
     <header>
         <nav>
-            <ul>
-                <li>
-                    <a href="/">Service Tracker</a>
-                </li>
-            </ul>
-            <ul>
-                <li><a href="/about">About</a></li>
-                <li><a href="/about">Add a Boat</a></li>
-                <li><a href="/about">View Cars</a></li>
-                <li><a href="/about">Add Parts</a></li>
-                <li><a href="/about">View Parts</a></li>
-                <li><a href="/about">Log Out</a></li>
-                <li><a href="/about">Log In</a></li>
-                <li><a href="/about">Sign Up</a></li>
-            </ul>
+            <div class="nav">
+                
+                    <ul>
+                        <li>
+                            <a href="/">Service Tracker</a>
+                        </li>
+                    </ul>
+                
+                
+                    <ul class="right">
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/about">Add a Boat</a></li>
+                        <li><a href="/boats">View Boats</a></li>
+                        <li><a href="/about">Add Parts</a></li>
+                        <li><a href="/about">View Parts</a></li>
+                        <li><a href="/about">Log Out</a></li>
+                        <li><a href="/about">Log In</a></li>
+                        <li><a href="/about">Sign Up</a></li>
+                    </ul>
+                
+            
         </nav>
     </header>
     <main>{% block content %}{% endblock %}</main>
 </body>
+
 </html>

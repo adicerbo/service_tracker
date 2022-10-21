@@ -1,0 +1,15 @@
+nav {
+    background-color: aquamarine;
+}
+
+li {
+    display: inline;
+}
+
+.nav {
+    display: inline;
+}
+
+ul.right {
+    text-align: right;
+}
