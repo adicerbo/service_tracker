@@ -117,9 +117,13 @@ class Boat(models.Model):
     length = models.IntegerField()
     generator = models.CharField(max_length=40)
     year = models.IntegerField()
+    hours = models.IntegerField()
 
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'boat_id': self.id})
 
 # class Boat:
 #     def __init__(self, name, brand, num_engines, engine, drive_type, length, generator, year):

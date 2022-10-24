@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Boat
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 
 def home(request):
@@ -15,3 +16,16 @@ def boats_index(request):
 def boats_detail(request, boat_id):
     boat = Boat.objects.get(id=boat_id)
     return render(request, 'boats/detail.html', {'boat': boat})
+
+class BoatCreate(CreateView):
+    model = Boat
+    fields = '__all__'
+    success_url = '/boats/'
+
+class BoatUpdate(UpdateView):
+    model = Boat
+    fields = ['hours']
+
+class BoatDelete(DeleteView):
+    model = Boat
+    success_url = '/boats/'

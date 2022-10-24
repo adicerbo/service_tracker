@@ -9,6 +9,11 @@
         <p>Drive: {{ boat.get_drive_type_display }} </p>
         <p>Generator: {{ boat.generator }} </p>
         <p>Year: {{ boat.year }} </p>
+        <p>Hours: {{ boat.hours }} </p>
+    </div>
+    <div class="card-action">
+        <a href="{% url 'boat_update' boat.id %}">Edit</a>
+        <a href="{% url 'boat_delete' boat.id %}">Delete</a>
     </div>
 </div>
 
