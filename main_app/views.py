@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Boat
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
@@ -16,6 +16,14 @@ def boats_index(request):
 def boats_detail(request, boat_id):
     boat = Boat.objects.get(id=boat_id)
     return render(request, 'boats/detail.html', {'boat': boat})
+
+def add_services(request, boat_id):
+    form = ServicesForm(request.POST)
+    if form.is_valid():
+        new_services = form.save(commit=FALSE)
+        new_services.boat_id = boat_id
+        new_services.save()
+    return redirect('detail', boat_id=boat_id)
 
 class BoatCreate(CreateView):
     model = Boat

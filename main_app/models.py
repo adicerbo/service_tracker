@@ -1,4 +1,7 @@
+# from wsgiref.validate import validator
 from django.db import models
+from multiselectfield import MultiSelectField
+# from django.core.validators import MaxValueValidator, MinValueValidator
 from django.urls import reverse
 from django.contrib.auth.models import User
 
@@ -96,6 +99,8 @@ PARTS = (
     ('21702999', '21702999 Volvo 21702999 Air Filter Insert'),
 )
 
+
+
 class Boat(models.Model):
     name = models.CharField(max_length=40)
     brand = models.CharField(max_length=40)
@@ -125,19 +130,27 @@ class Boat(models.Model):
     def get_absolute_url(self):
         return reverse('detail', kwargs={'boat_id': self.id})
 
-# class Boat:
-#     def __init__(self, name, brand, num_engines, engine, drive_type, length, generator, year):
-#         self.name = name
-#         self.brand = brand
-#         self.num_engines = num_engines
-#         self.engine = engine
-#         self.drive_type = drive_type
-#         self.length = length
-#         self.generator = generator
-#         self.year = year
+class Service(models.Model):
+    date = models.DateField('Service Date')
+    hours = models.IntegerField('Hours When Serviced')
+    SERVICES = (
+        ('1', 'Engine Oil'),
+        ('2', 'Drive Oil'),
+        ('3', 'Fuel Filters'),
+        ('4', 'Air Filters'),
+        ('5', 'Impellers'),
+        ('6', 'Engine Anodes'),
+        ('7', 'Drive Anodes'),
+        ('8', 'Hull Anodes'),
+        ('9', 'Air Coolers'),
+        ('10', 'Heat Exchangers'),
+        ('11', 'Oil Samples'),
+        ('12', 'Coolant Test'),
+        ('13', 'Coolant Swap'),
+    )
+    services = MultiSelectField(choices=SERVICES, max_length=13)
+    
+    boat = models.ForeignKey(Boat, on_delete=models.CASCADE)
 
-# boats = [
-#     Boat('relax', 'riviera', 'd8', 'ips', 45, 'onan', 2019),
-#     Boat('relax', 'riviera', 'd8', 'ips', 41, 'onan', 2012),
-#     Boat('relax', 'riviera', 'd8', 'ips', 44, 'onan', 2015)
-# ]
+    def __str__(self): 
+        return f"{self.get_services_display()} on {self.date}"
