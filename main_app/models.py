@@ -3,45 +3,45 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 
 ENGINES_NUM = (
-    (1, 1),
-    (2, 2),
-    (3, 3),
-    (4, 4),
-    (5, 5),
+    ('1', '1'),
+    ('2', '2'),
+    ('3', '3'),
+    ('4', '4'),
+    ('5', '5'),
 )
 
 ENGINES = (
-    (1,'D1-13'),
-    (2,'D2-40'),
-    (3,'D2-50'),
-    (4,'D2-55'),
-    (5,'D2-60'),
-    (6,'D2-75'),
-    (7,'D3-50'),
-    (8,'D3-110'),
-    (9,'D3-120'),
-    (10,'D3-130'),
-    (11,'D3-210'),
-    (12,'D3-220'),
-    (13,'D4-180'),
-    (14,'D4-225'),
-    (15,'D4-270'),
-    (16,'D4-300'),
-    (17,'D4-320'),
-    (19,'D6-280'),
-    (20,'D6-350'),
-    (21,'D6-435'),
-    (22,'D6-480'),
-    (23,'D8A1'),
-    (24,'D8A2'),
-    (25,'D8A6'),
-    (26,'D9A2'),
-    (27,'D11A'),
-    (28,'D11B'),
-    (29,'D11C'),
-    (30,'D13A'),
-    (31,'D13B'),
-    (32,'D13C')
+    ('1','D1-13'),
+    ('2','D2-40'),
+    ('3','D2-50'),
+    ('4','D2-55'),
+    ('5','D2-60'),
+    ('6','D2-75'),
+    ('7','D3-50'),
+    ('8','D3-110'),
+    ('9','D3-120'),
+    ('10','D3-130'),
+    ('11','D3-210'),
+    ('12','D3-220'),
+    ('13','D4-180'),
+    ('14','D4-225'),
+    ('15','D4-270'),
+    ('16','D4-300'),
+    ('17','D4-320'),
+    ('19','D6-280'),
+    ('20','D6-350'),
+    ('21','D6-435'),
+    ('22','D6-480'),
+    ('23','D8A1'),
+    ('24','D8A2'),
+    ('25','D8A6'),
+    ('26','D9A2'),
+    ('27','D11A'),
+    ('28','D11B'),
+    ('29','D11C'),
+    ('30','D13A'),
+    ('31','D13B'),
+    ('32','D13C')
 )
 
 DRIVES = (
@@ -101,23 +101,25 @@ class Boat(models.Model):
     brand = models.CharField(max_length=40)
     num_engines = models.CharField(
         max_length = 1,
-        choices = ENGINES_NUM,
-        default = ENGINES_NUM[0][0]
+        choices=ENGINES_NUM,
+        default=ENGINES_NUM[0][0]
     )
     engine = models.CharField(
         max_length=40,
-        choices = ENGINES,
-        default = ENGINES[0][0]
+        choices=ENGINES,
+        default=ENGINES[0][0]
         )
     drive_type = models.CharField(
         max_length=40,
-        choices = DRIVES,
-        default = DRIVES[0][0]
+        choices=DRIVES,
+        default=DRIVES[0][0]
         )
     length = models.IntegerField()
     generator = models.CharField(max_length=40)
     year = models.IntegerField()
 
+    def __str__(self):
+        return self.name
 
 # class Boat:
 #     def __init__(self, name, brand, num_engines, engine, drive_type, length, generator, year):
