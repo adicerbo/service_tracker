@@ -3,17 +3,14 @@
 
 {% for boat in boats %}
 <div class="card">
-    
+    <a href="{% url 'detail' boat.id %}">
         <div class="card-content">
-            <span class="card-title"><h1>{{ boat.name }}</h1></span>
+            <span class="card-title">
+                <h1>{{ boat.name }}</h1>
+            </span>
             <p>Brand: {{ boat.brand }} {{ boat.length }}</p>
-            <p>Number of Drivelines: {{ boat.get_num_engines_display }}</p>
-            <p>Engine: {{ boat.get_engine_display }}</p>
-            <p>Drive: {{ boat.get_drive_type_display }} </p>
-            <p>Generator: {{ boat.generator }} </p>
-            <p>Year: {{ boat.year }} </p>
         </div>
-
+    </a>
 </div>
 {% endfor %}
 {% endblock %}
