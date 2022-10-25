@@ -30,17 +30,22 @@
         <nav class="navbar">
             <ul>
                 <li class="list-inline-item">
-                    <h3><a href="/">Service Tracker</a></h1>
+                    <h3><a class="home" href="/">Service Tracker</a></h1>
                 </li>
             </ul>
             <div>
                 <ul>
                     <li class="list-inline-item"><a href="/about">About</a></li>
-                    <li class="list-inline-item"><a href="{% url 'boat_create' %}">Add a Boat</a></li>
                     <li class="list-inline-item"><a href="{% url 'index' %}">View Boats</a></li>
-                    <li class="list-inline-item"><a href="{% url 'parts_create' %}">Add Parts</a></li>
                     <li class="list-inline-item"><a href="{% url 'parts_index' %}">View Parts</a></li>
-                    
+                    {% if user.is_authenticated %}
+                    <li class="list-inline-item"><a href="{% url 'boat_create' %}">Add a Boat</a></li>
+                    <li class="list-inline-item"><a href="{% url 'parts_create' %}">Add Parts</a></li>
+                    <li class="list-inline-item"><a href="{% url 'logout' %}">Log Out</a></li>
+                    {% else %}
+                    <li class="list-inline-item"><a href="{% url 'login' %}">Log In</a></li>
+                    <li class="list-inline-item"><a href="{% url 'signup' %}">Sign Up</a></li>
+                    {% endif %}
                 </ul>
         </nav>
     </header>

@@ -16,4 +16,5 @@ urlpatterns = [
     path('parts/<int:pk>/update/', views.PartUpdate.as_view(), name='parts_update'),
     path('parts/<int:pk>/delete/', views.PartDelete.as_view(), name='parts_delete'),
     path('boats/<int:boat_id>/assoc_part/<int:part_id>/', views.assoc_part, name='assoc_part'),path('parts/create/', views.PartCreate.as_view(), name='parts_create'),
+    path('accounts/signup', views.signup, name='signup'),
 ]
