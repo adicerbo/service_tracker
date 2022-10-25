@@ -8,33 +8,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Service Tracker</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" /> -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
+    {% load crispy_forms_tags %}
     <header>
-        <nav>
-            <div class="nav">
-                
-                    <ul>
-                        <li>
-                            <a href="/">Service Tracker</a>
-                        </li>
-                    </ul>
-                
-                
-                    <ul class="right">
-                        <li><a href="/about">About</a></li>
-                        <li><a href="{% url 'boat_create' %}">Add a Boat</a></li>
-                        <li><a href="{% url 'index' %}">View Boats</a></li>
-                        <li><a href="/about">Add Parts</a></li>
-                        <li><a href="/about">View Parts</a></li>
-                        <li><a href="/about">Log Out</a></li>
-                        <li><a href="/about">Log In</a></li>
-                        <li><a href="/about">Sign Up</a></li>
-                    </ul>
-                
-            
+        <nav class="navbar">
+            <ul>
+                <li class="list-inline-item">
+                    <a href="/">Service Tracker</a>
+                </li>
+            </ul>
+            <div>
+                <ul>
+                    <li class="list-inline-item"><a href="/about">About</a></li>
+                    <li class="list-inline-item"><a href="{% url 'boat_create' %}">Add a Boat</a></li>
+                    <li class="list-inline-item"><a href="{% url 'index' %}">View Boats</a></li>
+                    <li class="list-inline-item"><a href="/about">Add Parts</a></li>
+                    <li class="list-inline-item"><a href="/about">View Parts</a></li>
+                    <li class="list-inline-item"><a href="/about">Sign Up</a></li>
+                    <li class="list-inline-item"><a href="/about">Log In</a></li>
+                    <li class="list-inline-item"><a href="/about">Log Out</a></li>
+                </ul>
         </nav>
     </header>
     <main>{% block content %}{% endblock %}</main>

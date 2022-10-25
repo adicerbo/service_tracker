@@ -1,4 +1,5 @@
 # from wsgiref.validate import validator
+from unicodedata import name
 from django.db import models
 from multiselectfield import MultiSelectField
 # from django.core.validators import MaxValueValidator, MinValueValidator
@@ -153,4 +154,4 @@ class Service(models.Model):
     boat = models.ForeignKey(Boat, on_delete=models.CASCADE)
 
     def __str__(self): 
-        return f"{self.get_services_display()} on {self.date}"
+        return f"{self.get_service_display()} on {self.date}"
