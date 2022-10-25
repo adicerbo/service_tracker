@@ -76,31 +76,38 @@ DRIVES = (
     ('DE', 'DPH-E'),
 )
 
-PARTS = (
-    ('3809721', '3809721 Volvo 3809721 Fuel Filter'),
-    ('A026K278', 'A026K278 Onan A026K278 Fuel Filter'),
-    ('E1C', 'E1C Camp E1C Engine Anode'),
-    ('2040N-30', '2040N-30 Racor 2040N-30 Fuel Filter'),
-    ('2010PM-OR', '2010PM-OR Racor 2010PM-OR Fuel Filter'),
-    ('838929', '838929 Engine Anode'),
-    ('10077K-SHW', '10077K-SHW Sherwood Impeller Kit'),
-    ('21707132', '21707132 Volvo 21707132 Oil Filter'),
-    ('0185-5835', '0185-5835 Cummins 0185-5835 Oil Filter'),
-    ('93132', '93132 Star Brite 93132 Diesel Additive(32oz)'),
-    ('3556610', '3556610 West Marine 3556610 - 60 Antifreeze(1 Gallon)'),
-    ('23219274', '23219274 Volvo 23219274 Diesel Engine Oil(1 Gallon) 15w-40'),
-    ('23005191', '23005191 Volvo 23005191 IPS Oil Filter'),
-    ('949656', '949656 Volvo 949656 O Ring'),
-    ('3593981', '3593981 Volvo 3593981 Anode Kit'),
-    ('1141680', '1141680 Volvo 1141680 Synthetic Gear Oil: 75W-90 (1 Gallon)'),
-    ('22030852', '22030852 Volvo 22030852 Oil Filter'),
-    ('22030848', '22030848 Volvo 22030848 Oil Filter'),
-    ('21718912', '21718912 Volvo 21718912 Fuel Filter'),
-    ('3584145', '3584145 Volvo 3584145 CCV Filter'),
-    ('21702999', '21702999 Volvo 21702999 Air Filter Insert'),
-)
 
+class Part(models.Model):
+    PARTS = (
+        ('1', '3809721 Volvo 3809721 Fuel Filter'),
+        ('2', 'A026K278 Onan A026K278 Fuel Filter'),
+        ('3', 'E1C Camp E1C Engine Anode'),
+        ('4', '2040N-30 Racor 2040N-30 Fuel Filter'),
+        ('5', '2010PM-OR Racor 2010PM-OR Fuel Filter'),
+        ('6', '838929 Engine Anode'),
+        ('7', '10077K-SHW Sherwood Impeller Kit'),
+        ('8', '21707132 Volvo 21707132 Oil Filter'),
+        ('9', '0185-5835 Cummins 0185-5835 Oil Filter'),
+        ('10', '93132 Star Brite 93132 Diesel Additive(32oz)'),
+        ('11', '3556610 West Marine 3556610 - 60 Antifreeze(1 Gallon)'),
+        ('12', '23219274 Volvo 23219274 Diesel Engine Oil(1 Gallon) 15w-40'),
+        ('13', '23005191 Volvo 23005191 IPS Oil Filter'),
+        ('14', '949656 Volvo 949656 O Ring'),
+        ('15', '3593981 Volvo 3593981 Anode Kit'),
+        ('16', '1141680 Volvo 1141680 Synthetic Gear Oil: 75W-90 (1 Gallon)'),
+        ('17', '22030852 Volvo 22030852 Oil Filter'),
+        ('18', '22030848 Volvo 22030848 Oil Filter'),
+        ('19', '21718912 Volvo 21718912 Fuel Filter'),
+        ('20', '3584145 Volvo 3584145 CCV Filter'),
+        ('21', '21702999 Volvo 21702999 Air Filter Insert'),
+    )
+    parts = MultiSelectField(choices=PARTS, max_length=1000)
 
+    # def __str__(self):
+    #     return f"{self._get_part_display()}"
+
+    def get_absolute_url(self):
+        return reverse('parts_detail', kwargs={'pk': self.id})
 
 class Boat(models.Model):
     name = models.CharField(max_length=40)
@@ -124,6 +131,7 @@ class Boat(models.Model):
     generator = models.CharField(max_length=40)
     year = models.IntegerField()
     hours = models.IntegerField()
+    parts = models.ManyToManyField(Part)
 
     def __str__(self):
         return self.name
@@ -155,3 +163,6 @@ class Service(models.Model):
 
     def __str__(self): 
         return f"{self.get_service_display()} on {self.date}"
+
+    class Meta:
+        ordering = ['hours']

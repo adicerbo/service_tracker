@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Boat
+from django.views.generic import ListView
+from .models import Boat, Part
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import ServiceForm
 
@@ -16,9 +17,14 @@ def boats_index(request):
 
 def boats_detail(request, boat_id):
     boat = Boat.objects.get(id=boat_id)
+    parts_boat_doesnt_have = Part.objects.exclude(
+        id__in=boat.parts.all().values_list('id')
+    )
     service_form = ServiceForm()
     return render(request, 'boats/detail.html', {
-        'boat': boat, 'service_form': service_form
+        'boat': boat, 
+        'service_form': service_form,
+        'parts': parts_boat_doesnt_have
         })
 
 def add_service(request, boat_id):
@@ -27,6 +33,10 @@ def add_service(request, boat_id):
         new_service = form.save(commit=False)
         new_service.boat_id = boat_id
         new_service.save()
+    return redirect('detail', boat_id=boat_id)
+
+def assoc_part(request, boat_id, part_id):
+    Boat.objects.get(id=boat_id).parts.add(part_id)
     return redirect('detail', boat_id=boat_id)
 
 class BoatCreate(CreateView):

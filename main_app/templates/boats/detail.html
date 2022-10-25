@@ -22,7 +22,7 @@
                 </div>
             </div>
         </div>
-    </br>
+        </br>
         <div class="form-group">
             <h4>Add a Service</h4>
             <form action="{% url 'add_service' boat.id %}" method="post">
@@ -48,16 +48,55 @@
                 {% endfor %}
             </tbody>
         </table>
-
     </div>
 </div>
-<script>
-    var dateEl = document.getElementById('id_date');
-    M.Datepicker.init(dateEl, {
-        format: 'yyyy-mm-dd',
-        defaultDate: new Date(),
-        setDefaultDate: true,
-        autoClose: true
-    }); 
-</script>
-{% endblock %}
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col s6">
+            <h3>Parts Used</h3>
+            {% if boat.parts.count %} {% for part in boat.parts.all %}
+            <div class="card">
+                <div class="card-body">
+                    <span class="card-title">
+                        <span>{{ part.get_parts_display }}</span>
+                    </span>
+                </div>
+            </div>
+            {% endfor %} {% else %}
+            <h5>No Parts</h5>
+            {% endif %}
+        </div>
+        <div class="col s6">
+            <h3>Available Parts</h3>
+            {% if parts.count %}
+            {% for part in parts.all %}
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <span class="card-title">
+                        <span>{{ part.get_parts_display }}</span>
+                    </span>
+                </div>
+                <div class="card-action">
+                    <form action="{% url 'assoc_part' boat.id part.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-primary">Add</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <h5>{{boat.name}} Already Has All Parts Available</h5>
+            {% endif %}
+        </div>
+    </div>
+    <script>
+        var dateEl = document.getElementById('id_date');
+        M.Datepicker.init(dateEl, {
+            format: 'yyyy-mm-dd',
+            defaultDate: new Date(),
+            setDefaultDate: true,
+            autoClose: true
+        }); 
+    </script>
+    {% endblock %}
