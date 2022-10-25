@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<h1>Delete Part</h1>
+
+<h4>
+    Are you sure you want to delete <span class="teal-text">{{ part.get_parts_display }}</span>?
+</h4>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <input class="btn red" type="submit" value="Yes - Delete">
+    <a class="btn blue" href="{% url 'detail' object.id %}">Cancel</a>
+</form>
+
+{% endblock %}

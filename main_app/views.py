@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from .models import Boat, Part
+from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import ServiceForm
 
@@ -41,7 +42,7 @@ def assoc_part(request, boat_id, part_id):
 
 class BoatCreate(CreateView):
     model = Boat
-    fields = '__all__'
+    fields = ['name', 'brand', 'num_engines', 'engine', 'drive_type', 'length', 'generator', 'year', 'hours']
     success_url = '/boats/'
 
 class BoatUpdate(UpdateView):
@@ -51,3 +52,23 @@ class BoatUpdate(UpdateView):
 class BoatDelete(DeleteView):
     model = Boat
     success_url = '/boats/'
+
+class PartCreate(CreateView):
+    model = Part
+    fields = '__all__'
+    
+class PartUpdate(UpdateView):
+    model = Part
+    fields = '__all__'
+
+class PartDelete(DeleteView):
+    model = Part
+    success_url = '/parts/'
+
+class PartDetail(DetailView):
+    model = Part
+    template_name = 'parts/detail.html'
+
+class PartList(ListView):
+    model = Part
+    template_name = 'parts/index.html'

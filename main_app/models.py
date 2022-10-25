@@ -101,7 +101,7 @@ class Part(models.Model):
         ('20', '3584145 Volvo 3584145 CCV Filter'),
         ('21', '21702999 Volvo 21702999 Air Filter Insert'),
     )
-    parts = MultiSelectField(choices=PARTS, max_length=1000)
+    parts = MultiSelectField(choices=PARTS, max_length=1000) 
 
     # def __str__(self):
     #     return f"{self._get_part_display()}"
@@ -162,7 +162,7 @@ class Service(models.Model):
     boat = models.ForeignKey(Boat, on_delete=models.CASCADE)
 
     def __str__(self): 
-        return f"{self.get_service_display()} on {self.date}"
+        return f"{self.get_services_display()} on {self.date}"
 
     class Meta:
         ordering = ['hours']

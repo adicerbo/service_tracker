@@ -38,11 +38,9 @@
                     <li class="list-inline-item"><a href="/about">About</a></li>
                     <li class="list-inline-item"><a href="{% url 'boat_create' %}">Add a Boat</a></li>
                     <li class="list-inline-item"><a href="{% url 'index' %}">View Boats</a></li>
-                    <li class="list-inline-item"><a href="/about">Add Parts</a></li>
-                    <li class="list-inline-item"><a href="/about">View Parts</a></li>
-                    <li class="list-inline-item"><a href="/about">Sign Up</a></li>
-                    <li class="list-inline-item"><a href="/about">Log In</a></li>
-                    <li class="list-inline-item"><a href="/about">Log Out</a></li>
+                    <li class="list-inline-item"><a href="{% url 'parts_create' %}">Add Parts</a></li>
+                    <li class="list-inline-item"><a href="{% url 'parts_index' %}">View Parts</a></li>
+                    
                 </ul>
         </nav>
     </header>
