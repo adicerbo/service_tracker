@@ -15,7 +15,6 @@
                     <p>Drive: {{ boat.get_drive_type_display }} </p>
                     <p>Generator: {{ boat.generator }} </p>
                     <p>Year: {{ boat.year }} </p>
-                    <p>Hours: {{ boat.hours }} </p>
                     <p>Length: {{ boat.length }} ft.</p>
                     <button class="btn btn-secondary"><a href="{% url 'boat_update' boat.id %}">Edit</a></button>
                     <button class="btn btn-danger"><a href="{% url 'boat_delete' boat.id %}">Delete</a></button>
