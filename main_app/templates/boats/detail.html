@@ -7,8 +7,8 @@
     </div>
 
     <div class="container">
-        <div>
-            <div class="card" style="width: 22rem;">
+        <div class="row">
+            <div class="card" style="width: 25rem;">
                 <div class="card-body">
                     <p>Number of Drivelines: {{ boat.get_num_engines_display }}</p>
                     <p>Engine: {{ boat.get_engine_display }}</p>
@@ -20,33 +20,36 @@
                     <button class="btn btn-danger"><a href="{% url 'boat_delete' boat.id %}">Delete</a></button>
                 </div>
             </div>
+
+            </br>
+            <div class="form-group col-md">
+                <h4>Add a Service</h4>
+                <form action="{% url 'add_service' boat.id %}" method="post">
+                    {% csrf_token %} {{service_form|crispy}}
+                    <button class="btn btn-primary" type="submit" value="Add Service">Add Service</button>
+                </form>
+            </div>
         </div>
-        </br>
-        <div class="form-group">
-            <h4>Add a Service</h4>
-            <form action="{% url 'add_service' boat.id %}" method="post">
-                {% csrf_token %} {{service_form|crispy}}
-                <button class="btn btn-primary" type="submit" value="Add Service">Add Service</button>
-            </form>
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Hours</th>
+                        <th>Services</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for service in boat.service_set.all %}
+                    <tr>
+                        <td>{{service.date}}</td>
+                        <td>{{service.hours}}</td>
+                        <td>{{service.get_services_display}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Hours</th>
-                    <th>Services</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for service in boat.service_set.all %}
-                <tr>
-                    <td>{{service.date}}</td>
-                    <td>{{service.hours}}</td>
-                    <td>{{service.get_services_display}}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
     </div>
 </div>
 <hr />
