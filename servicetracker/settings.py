@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'servicetracker.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME':'vessels',
+        'NAME':'boats',
         'USER': 'postgres',
         'PASSWORD': '1',
         'host': 'locahost',
