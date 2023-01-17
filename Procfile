@@ -1,1 +1,2 @@
-web: gunicorn servicetracker.wsgi
+release: python manage.py migrate
+web: gunicorn servicetracker.wsgi --log-file=-
