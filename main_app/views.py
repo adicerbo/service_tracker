@@ -49,7 +49,7 @@ def assoc_part(request, boat_id, part_id):
 
 class BoatCreate(LoginRequiredMixin, CreateView):
     model = Boat
-    fields = ['name', 'brand', 'num_engines', 'engine', 'drive_type', 'length', 'generator', 'year', 'hours']
+    fields = '__all__'
     success_url = '/boats/'
 
 
