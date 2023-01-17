@@ -132,7 +132,13 @@ class Boat(models.Model):
     year = models.IntegerField()
     hours = models.IntegerField()
     parts = models.ManyToManyField(Part)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        User, 
+        models.SET_NULL,
+        blank=True,
+        null=True,
+        on_delete=models.CASCADE,
+        )
 
     def __str__(self):
         return self.name
