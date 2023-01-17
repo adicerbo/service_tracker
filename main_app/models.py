@@ -135,8 +135,6 @@ class Boat(models.Model):
     user = models.ForeignKey(
         User, 
         models.SET_NULL,
-        blank=True,
-        null=True,
         on_delete=models.CASCADE,
         )
 
