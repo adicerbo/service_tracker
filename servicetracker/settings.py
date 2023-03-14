@@ -84,10 +84,10 @@ WSGI_APPLICATION = 'servicetracker.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd2iehloc8v3mtu',
-        'USER': 'uqqmcttsudwnwg',
-        'PASSWORD': 'bae64d8e8632826e929cec921efee2317fba08f3838563ec8292e94f9d9a3afc',
-        'host': 'ec2-54-80-123-146.compute-1.amazonaws.com',
+        'NAME': 'dbi53d1amr7alt',
+        'USER': 'agodfcwriseprg',
+        'PASSWORD': '7ba7d8b75f0bb03dd63669a00469bdf4f5d7137d800e9437c0853cc1421733a2',
+        'HOST': 'ec2-3-232-103-50.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
@@ -130,7 +130,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
+    os.path.join(BASE_DIR, 'main_app/static')
 ]
 django_heroku.settings(locals())
 

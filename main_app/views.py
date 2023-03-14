@@ -16,8 +16,9 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
+@login_required
 def boats_index(request):
-    boats = Boat.objects.all()
+    boats = Boat.objects.filter(user=request.user)
     return render(request, 'boats/index.html', { 'boats': boats })
 
 def boats_detail(request, boat_id):
