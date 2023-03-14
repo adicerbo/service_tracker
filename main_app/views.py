@@ -53,6 +53,10 @@ class BoatCreate(LoginRequiredMixin, CreateView):
     fields = ['name', 'brand', 'num_engines', 'engine', 'drive_type', 'length', 'generator', 'year', 'hours']
     success_url = '/boats/'
 
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
 
 class BoatUpdate(LoginRequiredMixin, UpdateView):
     model = Boat
